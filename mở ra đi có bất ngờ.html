@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Quà 8/3</title>
+
+<style>
+
+body{
+font-family: Arial;
+text-align:center;
+background:#ffe6f0;
+margin:0;
+padding:0;
+}
+
+.page{
+display:none;
+padding-top:80px;
+}
+
+.active{
+display:block;
+}
+
+.gifts{
+margin-top:40px;
+}
+
+.gift{
+font-size:80px;
+cursor:pointer;
+margin:30px;
+transition:0.3s;
+}
+
+.gift:hover{
+transform:scale(1.2);
+}
+
+.letter{
+margin-top:30px;
+font-size:26px;
+color:#d63384;
+}
+
+.next{
+position:fixed;
+bottom:20px;
+right:20px;
+font-size:40px;
+cursor:pointer;
+display:none;
+}
+
+.score-box{
+display:inline-block;
+width:50px;
+height:50px;
+line-height:50px;
+border:2px solid black;
+margin:8px;
+cursor:pointer;
+font-size:20px;
+background:white;
+}
+
+.score-box:hover{
+background:#ffd6e7;
+}
+
+.message{
+margin-top:30px;
+font-size:24px;
+color:red;
+}
+
+.success{
+color:green;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Trang 1 -->
+<div id="page1" class="page active">
+
+<h2>Hãy chọn 1 hộp quà 🎁</h2>
+
+<div class="gifts">
+
+<span class="gift" onclick="openGift(1)">🎁</span>
+<span class="gift" onclick="openGift(2)">🎁</span>
+<span class="gift" onclick="openGift(3)">🎁</span>
+
+</div>
+
+<div id="letter" class="letter"></div>
+
+<div id="nextBtn" class="next" onclick="nextPage()">➡️</div>
+
+</div>
+
+
+<!-- Trang 2 -->
+<div id="page2" class="page">
+
+<h2>Tự chấm điểm bản thân trên thang 10</h2>
+
+<div id="scores"></div>
+
+<div id="result" class="message"></div>
+
+</div>
+
+
+<script>
+
+function openGift(n){
+
+let text="";
+
+if(n==1) text="Chúc bảo bối 8/3 vui vẻ và tràn đầy hạnh phúc.";
+if(n==2) text="Nhân ngày 8/3, chúc bạn mình luôn hạnh phúc, mạnh khỏe, xinh đẹp và gặp nhiều may mắn.";
+if(n==3) text="Hôm nay, 8/3, tôi đã ký hợp đồng trọn đời cho phép em là bông hoa rực rỡ nhất.";
+
+document.getElementById("letter").innerHTML=text;
+
+document.getElementById("nextBtn").style.display="block";
+
+}
+
+function nextPage(){
+
+document.getElementById("page1").classList.remove("active");
+document.getElementById("page2").classList.add("active");
+
+}
+
+let scoresDiv=document.getElementById("scores");
+
+for(let i=1;i<=10;i++){
+
+let box=document.createElement("div");
+
+box.className="score-box";
+
+box.innerText=i;
+
+box.onclick=function(){
+
+if(i==10){
+
+document.getElementById("result").innerHTML='<span class="success">Thi tốt nha người 10 điểm không có nhưng 🎉🎉</span>';
+
+}else{
+
+document.getElementById("result").innerHTML="Lỗi! Chọn lại đi 😜";
+
+}
+
+};
+
+scoresDiv.appendChild(box);
+
+}
+
+</script>
+
+</body>
+</html>
